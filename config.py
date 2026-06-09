@@ -7,8 +7,8 @@ CONFIG_FILE = CONFIG_DIR / "config.json"
 
 
 def load_api_key() -> str:
-    if os.environ.get("OPENROUTER_API_KEY"):
-        return os.environ["OPENROUTER_API_KEY"]
+    if os.environ.get("GEMINI_API_KEY"):
+        return os.environ["GEMINI_API_KEY"]
     if CONFIG_FILE.exists():
         try:
             data = json.loads(CONFIG_FILE.read_text())

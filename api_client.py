@@ -4,8 +4,8 @@ import urllib.request
 import urllib.error
 from typing import Callable
 
-OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-MODEL = "google/gemini-2.5-flash"
+GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
+MODEL = "gemini-2.5-flash"
 
 
 class APIError(Exception):
@@ -77,33 +77,24 @@ def _extract_json(text: str) -> dict:
 
 def _call_api(api_key: str, system_prompt: str, user_prompt: str,
               on_progress: Callable[[str], None] = None) -> str:
-    url = f"{OPENROUTER_BASE_URL}/chat/completions"
+    url = f"{GEMINI_BASE_URL}/models/{MODEL}:generateContent?key={api_key}"
     payload = json.dumps({
-        "model": MODEL,
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        "temperature": 0.3,
-        "max_tokens": 8192,
+        "system_instruction": {"parts": [{"text": system_prompt}]},
+        "contents": [{"role": "user", "parts": [{"text": user_prompt}]}],
+        "generationConfig": {"temperature": 0.3, "maxOutputTokens": 8192},
     }).encode("utf-8")
 
     req = urllib.request.Request(
         url,
         data=payload,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-            "HTTP-Referer": "https://github.com/epoko77-ai/im-not-ai",
-            "X-Title": "im-not-ai",
-        },
+        headers={"Content-Type": "application/json"},
         method="POST",
     )
 
     try:
         with urllib.request.urlopen(req, timeout=120) as resp:
             body = json.loads(resp.read().decode("utf-8"))
-            return body["choices"][0]["message"]["content"]
+            return body["candidates"][0]["content"]["parts"][0]["text"]
     except urllib.error.HTTPError as e:
         error_body = e.read().decode("utf-8")
         try:

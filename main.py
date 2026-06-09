@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""im-not-ai: AI 한국어 글 윤문 앱 (OpenRouter / Gemini 2.0 Flash)"""
+"""im-not-ai: AI 한국어 글 윤문 앱 (Google AI Studio / Gemini 2.5 Flash)"""
 
 import tkinter as tk
 import tkinter.font as tkfont
@@ -876,8 +876,8 @@ class ImNotAIApp(tk.Tk):
 
     def _prompt_api_key(self):
         key = simpledialog.askstring(
-            "OpenRouter API 키 설정",
-            "OpenRouter API 키를 입력하세요:\n(https://openrouter.ai 에서 발급)",
+            "Google AI Studio API 키 설정",
+            "Google AI Studio API 키를 입력하세요:\n(https://aistudio.google.com 에서 발급)",
             initialvalue=self._api_key, parent=self,
         )
         if key is not None:
@@ -958,7 +958,7 @@ class ImNotAIApp(tk.Tk):
 
     def _run_in_thread(self, fn, **extra):
         if not self._api_key:
-            messagebox.showerror("API 키 없음", "OpenRouter API 키를 먼저 설정해주세요.")
+            messagebox.showerror("API 키 없음", "Google AI Studio API 키를 먼저 설정해주세요.")
             self._prompt_api_key()
             return
         text = self.input_text.get("1.0", "end-1c").strip()
