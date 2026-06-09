@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #1e1e2e;
+  --panel: #2a2a3e;
+  --accent: #b39ddb;
+  --accent2: #4fc3f7;
+  --btn-fg: #12122a;
+  --success: #50fa7b;
+  --warn: #ffb86c;
+  --danger: #ff5555;
+  --text: #cdd6f4;
+  --subtext: #6c7086;
+  --input-bg: #181825;
+  --chip-sel: #7c6af7;
+  --chip-unsel: #363650;
+  --diff-add-bg: #1a3a20;
+  --diff-add-fg: #69ff94;
+  --diff-del-bg: #3a1a1a;
+  --diff-del-fg: #ff6e6e;
+  --diff-chg-bg: #3a2e10;
+  --diff-chg-fg: #ffd580;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  resize: none;
+  outline: none;
+  border: none;
+  background: var(--input-bg);
+  color: var(--text);
+  caret-color: var(--text);
+}
+
+textarea::selection {
+  background: var(--chip-sel);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--chip-sel);
+  border-radius: 2px;
+}
+
+.diff-add { background: var(--diff-add-bg); color: var(--diff-add-fg); }
+.diff-del { background: var(--diff-del-bg); color: var(--diff-del-fg); text-decoration: line-through; }
+.diff-chg { background: var(--diff-chg-bg); color: var(--diff-chg-fg); }

@@ -3,3 +3,11 @@ __pycache__/
 *.pyc
 build/
 dist/
+
+# Next.js
+.next/
+node_modules/
+.env*.local
+
+# Vercel
+.vercel/
