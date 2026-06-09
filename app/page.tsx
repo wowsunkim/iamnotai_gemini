@@ -455,14 +455,12 @@ export default function Home() {
             </div>
 
             {/* 총평 */}
-            {result.summary && (
-              <div style={{ padding: "6px 14px 10px", borderTop: "1px solid #2a2a45" }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#cdd6f4", marginBottom: 4 }}>총평</div>
-                <div style={{ fontSize: 13, color: "#cdd6f4", lineHeight: 1.7, whiteSpace: "pre-wrap", fontFamily: "'Apple SD Gothic Neo','Malgun Gothic',sans-serif" }}>
-                  {buildReview(result, s1, s2)}
-                </div>
+            <div style={{ padding: "6px 14px 10px", borderTop: "1px solid #2a2a45" }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#cdd6f4", marginBottom: 4 }}>총평</div>
+              <div style={{ fontSize: 13, color: "#cdd6f4", lineHeight: 1.7, whiteSpace: "pre-wrap", fontFamily: "'Apple SD Gothic Neo','Malgun Gothic',sans-serif" }}>
+                {buildReview(result, s1, s2)}
               </div>
-            )}
+            </div>
 
             {/* 탐지 패턴 테이블 */}
             {result.patterns.length > 0 && (
